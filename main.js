@@ -1,15 +1,3 @@
-const uepgwrapper = require('./uepgwrapper')
-
-uepgwrapper.getHeaders((headers, callback) => {
-    uepgwrapper.getAuth(headers, (headers, callback) => {
-        uepgwrapper.getDocs(headers, (body) => {
-            console.log(body)
-        })
-    })
-})
-
-/*
-
 const { app, BrowserWindow } = require('electron')
 
 app.on('ready', () => {
@@ -18,12 +6,9 @@ app.on('ready', () => {
         height: 400
     })
 
-    //mainWindow.loadURL('https://sistemas.uepg.br/academicoonline/login/index')
-    mainWindow.loadURL('file://src/index.html')
+    mainWindow.loadURL(`file://${__dirname}/src/renderers/grade/grade.html`)
 })
 
 app.on('window-all-closed', () => {
     app.quit()
 })
-
-*/

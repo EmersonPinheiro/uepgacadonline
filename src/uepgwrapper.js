@@ -40,6 +40,8 @@ module.exports = {
     parseGrade(body) {
         const $ = cheerio.load(body)
 
+        return $('table')
+
         let t = []
         $('table').find('td').each((index, element) => {
             let children = $(this).children()
