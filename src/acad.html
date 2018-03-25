@@ -17,17 +17,25 @@
             </div>
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">
-                    Acadêmico Online
+                    <a href="acad.html">
+                        Acadêmico Online
+                    </a>
                 </span>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                           mdl-textfield--floating-label mdl-textfield--align-right">
                     <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link">Perfil</a>
                         <a class="mdl-navigation__link" href="docs.html">Documentos</a>
                         <a class="mdl-navigation__link" href="grade.html">Notas</a>
+                        <a class="mdl-navigation__link" href="grade.html">Downloads</a>
+                        <a class="mdl-navigation__link" href="grade.html">Contatos</a>
                     </nav>
                 </div>
                 <div class="mdl-layout-spacer"></div>
                 <nav class="mdl-navigation">
+                    <button id="alert-dropdown" class="mdl-button mdl-js-button mdl-button--icon">
+                        <i class="material-icons">notifications</i>
+                    </button>
                     <button id="user-dropdown" class="mdl-button mdl-js-button mdl-button--icon">
                         <i class="material-icons">more_vert</i>
                     </button>
@@ -37,6 +45,15 @@
                                 Sair
                             </li>
                         </a>
+                    </ul>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="alert-dropdown">
+                        <li class="mdl-menu__item">Nota Fenômenos de Transporte Disponível</li>
+                        <li class="mdl-menu__item">Falta em Fenômenos de Transporte</li>
+                        <li class="mdl-menu__item">Falta em Análise de Circuitos</li>
+                        <li class="mdl-menu__item">Falta em Probabilidade e Estatística</li>
+                        <li class="mdl-menu__item">
+                            Nota em Eletrônica II
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -62,179 +79,127 @@
                                 </div>
                             </div>
                 
-                            <table id='mdl-table' class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                            <table id='mdl-table' class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                                 <thead>
                                     <tr>
-                                        <th class="mdl-data-table__cell--non-numeric sort" data-sort="cod">Código</th>
                                         <th class="sort" data-sort="nome">Nome</th>
-                                        <th class="sort" data-sort="turma">Turma</th>
-                                        <th class="sort" data-sort="calendario">Calendário</th>
                                         <th class="sort" data-sort="faltas">Faltas</th>
                                         <th class="sort" data-sort="nota01">Nota 01</th>
                                         <th class="sort" data-sort="nota02">Nota 02</th>
                                         <th class="sort" data-sort="notae">Nota E</th>
                                         <th class="sort" data-sort="media">Média</th>
                                         <th class="sort" data-sort="frequencia">Frequência(%)</th>
-                                        <th class="sort" data-sort="estado">Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203519</td>
                                         <td class="nome">Análise de Circuitos</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">12</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">82</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">101554</td>
                                         <td class="nome">Probabilidade e Estatística I</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203530</td>
                                         <td class="nome">Processamento Digital de Sinais</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">14</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">79</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203523</td>
                                         <td class="nome">Sistemas Operacionais</td>
-                                        <td class="turma">B</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203518</td>
                                         <td class="nome">Eletrônica II</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">20</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">70</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203527</td>
                                         <td class="nome">Modelagem de Software</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-1</td>
                                         <td class="faltas">12</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">82</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203517</td>
                                         <td class="nome">Eletrônica I</td>
-                                        <td class="turma">C</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">101555</td>
                                         <td class="nome">Probabilidade e Estatística II</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203524</td>
                                         <td class="nome">Sistemas Embarcados</td>
-                                        <td class="turma">B</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203559</td>
                                         <td class="nome">Modelagem de Sistemas</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">201118</td>
                                         <td class="nome">Fenômenos de Transporte</td>
-                                        <td class="turma">A</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                     <tr>
-                                        <td class="mdl-data-table__cell--non-numeric cod">203515</td>
                                         <td class="nome">Análise de Algorítmos</td>
-                                        <td class="turma">B</td>
-                                        <td class="calendario">2018-2</td>
                                         <td class="faltas">0</td>
                                         <td class="nota01"></td>
                                         <td class="nota02"></td>
                                         <td class="notae"></td>
                                         <td class="media">0</td>
                                         <td class="frequencia">100</td>
-                                        <td class="estado">R</td>
-                                    </tr>
+                                        </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -249,6 +214,11 @@
             background: #fafafa;
             position: relative;
             overflow: hidden;
+        }
+
+        .mdl-layout-title > a {
+            text-decoration: none;
+            color: white;
         }
 
         div.mdl-card {
