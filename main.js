@@ -4,8 +4,8 @@ const { app, BrowserWindow } = require('electron')
 
 app.on('ready', () => {
     let mainWindow = new BrowserWindow({
-        width: 1000,
-        height: 600
+        width: 800,
+        height: 8   00
     })
 
     //mainWindow.loadURL('https://sistemas.uepg.br/academicoonline/login/index')
