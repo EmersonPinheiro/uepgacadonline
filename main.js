@@ -1,3 +1,5 @@
+const uepgwrapper = require('./src/uepgwrapper')
+
 const { app, BrowserWindow } = require('electron')
 
 app.on('ready', () => {
@@ -6,7 +8,9 @@ app.on('ready', () => {
         height: 400
     })
 
-    mainWindow.loadURL(`file://${__dirname}/src/renderers/grade/grade.html`)
+    //mainWindow.loadURL('https://sistemas.uepg.br/academicoonline/login/index')
+    mainWindow.loadURL(`file://${__dirname}/src/login.html`)
+    //mainWindow.loadURL('https://dontfile.herokuapp.com')
 })
 
 app.on('window-all-closed', () => {
