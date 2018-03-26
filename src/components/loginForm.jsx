@@ -1,27 +1,39 @@
 import React, { Component } from 'react'
 
 export default class LoginForm extends Component {
+    getUser() {
+        fetch('https://sistemas.uepg.br/academicoonline/login/authenticate', {
+            method: "POST",
+            body: JSON.stringify({
+                'login': '14147326',
+                'password': ''
+            })
+                .then(resp => resp.json())
+                .then(resp => console.log(resp))
+        })
+    }
+
     render () {
         return (
-            <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
-                <main class="mdl-layout__content">
-                    <div class="mdl-card mdl-shadow--6dp">
-                        <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-                            <h2 class="mdl-card__title-text">Acadêmico Online</h2>
+            <div className="mdl-layout mdl-js-layout mdl-color--grey-100">
+                <main className="mdl-layout__content">
+                    <div className="mdl-card mdl-shadow--6dp">
+                        <div className="mdl-card__title mdl-color--primary mdl-color-text--white">
+                            <h2 className="mdl-card__title-text">Acadêmico Online</h2>
                         </div>
-                        <form action="acad.html">
-                            <div class="mdl-card__supporting-text">
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="username" />
-                                    <label class="mdl-textfield__label" for="username">RA</label>
+                        <form type="submit" onSubmit={this.getUser}>
+                            <div className="mdl-card__supporting-text">
+                                <div className="mdl-textfield mdl-js-textfield">
+                                    <input className="mdl-textfield__input" type="text" id="username" />
+                                    <label className="mdl-textfield__label" htmlFor="username">RA</label>
                                 </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="password" id="userpass" />
-                                    <label class="mdl-textfield__label" for="userpass">Senha</label>
+                                <div className="mdl-textfield mdl-js-textfield">
+                                    <input className="mdl-textfield__input" type="password" id="userpass" />
+                                    <label className="mdl-textfield__label" htmlFor="userpass">Senha</label>
                                 </div>
                             </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Entrar</button>
+                            <div className="mdl-card__actions mdl-card--border">
+                                <button type="submit" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Entrar</button>
                             </div>
                         </form>
                     </div>
