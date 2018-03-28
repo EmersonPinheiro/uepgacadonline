@@ -1,11 +1,9 @@
-const INITIAL_STATE = {
-    
-}
+const INITIAL_STATE = {grade: []}
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'USER_LOGIN':
-        case 'USER_LOGOUT':
+        case 'GRADE_FETCHED':
+            return { ...state, grade: action.payload.data }
         default:
             return state
     }
