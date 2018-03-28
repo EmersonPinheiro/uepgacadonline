@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import LoginForm from './components/loginForm'
+import { HashRouter } from 'react-router-dom'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <LoginForm></LoginForm>
-      </div>
-    );
-  }
-}
+import Routes from './routes'
 
-export default App;
+export default props => (
+  <HashRouter>
+    <div className='wrapper'>
+      <Routes />
+    </div>
+  </HashRouter>
+)
