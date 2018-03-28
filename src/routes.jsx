@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router'
 
-import LoginForm from './components/loginForm'
+import LoginForm from './login/loginForm'
 
 export default props => (
     <div className="content-wrapper">

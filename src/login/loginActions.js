@@ -1,15 +1,15 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 
+const SCRAP_URL = 'https://sistemas.uepg.br/academicoonline/login/authenticate'
+
 export function getHeaders() {
 
 }
 
 export function login(credentials) {
     return dispatch => {
-        url = 'https://sistemas.uepg.br/academicoonline/login/authenticate'
-
-        axios.post(url, credentials)
+        axios.post(SCRAP_URL, credentials)
             .then(response => {
                 dispatch([
                     { type: 'USER_LOGIN', payload: response.data }
