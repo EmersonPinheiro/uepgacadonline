@@ -6,8 +6,9 @@ const path = require('path');
 
 const server = require('./src/server')
 
+const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+
 app.on('ready', () => {
-    const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
     const url = process.env.URL || url_.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',

@@ -10,7 +10,8 @@ SCRAP_URLS = {
     'session': 'https://sistemas.uepg.br/academicoonline/login/index',
     'auth': 'https://sistemas.uepg.br/academicoonline/login/authenticate',
     'home': 'https://sistemas.uepg.br/academicoonline',
-    'grade': 'https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index'
+    'grade': 'https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index',
+    'document': 'https://sistemas.uepg.br/academicoonline/documentos/generate?reportName='
 }
 
 const server = express()
@@ -20,7 +21,7 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.post('/scrap/auth', (req, res) => {
-    data = { 'login': req.body.login, 'password': req.body.password }
+    let data = { 'login': req.body.login, 'password': req.body.password }
 
     axios.get(SCRAP_URLS['session'])
     .then((scrap_res) => {
@@ -44,7 +45,7 @@ server.post('/scrap/auth', (req, res) => {
 })
 
 server.post('/scrap/grade', (req, res) => {
-    data = { 'cookie': req.body.cookie }  
+    let data = { 'cookie': req.body.cookie }  
 
     axios.get(SCRAP_URLS['grade'], {
         headers: data
@@ -59,6 +60,18 @@ server.post('/scrap/grade', (req, res) => {
         });
 
         res.send(table) 
+    })
+})
+
+server.post('/scrap/document', (req, res) => {
+    let data = { 'cookie': req.body.cookie }
+    let docName = req.body.docName
+
+    axios.get(SCRAP_URLS['document'] + docName, {
+        headers: data
+    })
+    .then((scrap_resp) => {
+        res.send(scrap_resp.data)
     })
 })
 

@@ -9,7 +9,7 @@ export const getGrade = (cookie) => {
     return dispatch => {
         axios.post(GRADE_URL, queryString.stringify({ cookie }))
         .then(resp => {
-            dispatch({ type: 'GRADE_FETCHED', payload: resp.data })
+            dispatch({ type: 'DOCUMENT_FETCHED', payload: resp.data })
         })
     }
 }

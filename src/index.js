@@ -21,7 +21,7 @@ import GradeReducer from './components/grade/gradeReducer'
 
 import Auth from './views/auth'
 import Home from './views/home'
-import Documents from './components/documents'
+import Documents from './components/documents/documents'
 import Grade from './components/grade/grade'
 
 import Navbar from './components/navbar'
