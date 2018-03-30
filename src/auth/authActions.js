@@ -9,7 +9,10 @@ export const auth = (login, password) => {
     console.log(login, password)    
     return dispatch => {
         axios.post(AUTH_URL, queryString.stringify({ login, password }))
-        .then(resp => { console.log(resp.data); dispatch({ type: 'USER_LOGON', payload: resp.data }) })
+        .then(resp => { 
+            dispatch({ type: 'USER_LOGGED_IN', payload: resp.data })
+         })
+        .catch(() => { type: 'USER_LOGIN_IN_FAILED'})
     }
 }
 

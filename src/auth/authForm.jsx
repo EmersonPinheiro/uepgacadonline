@@ -6,7 +6,6 @@ import { auth, changeLogin, changePassword } from './authActions'
 
 class AuthForm extends Component {
     render() {
-
         return (
             <div className="mdl-layout mdl-js-layout mdl-color--grey-100">
                 <main className="mdl-layout__content">
