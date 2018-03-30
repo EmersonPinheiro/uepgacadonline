@@ -17,6 +17,7 @@ import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 
 import AuthReducer from './auth/authReducer'
+import GradeReducer from './grade/gradeReducer'
 
 import Auth from './auth/auth'
 import Documents from './components/documents'
@@ -28,6 +29,7 @@ import registerServiceWorker from './registerServiceWorker'
 
 const reducers = combineReducers({
     auth: AuthReducer,
+    grade: GradeReducer,
     router: routerReducer,
     toastr: toastrReducer
 })

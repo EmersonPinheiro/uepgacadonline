@@ -8,13 +8,23 @@ import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { getGrade } from './gradeActions'
 
 class Grade extends Component {
-    componentWillMount() {
-        let SCRAP_URL = 'http://localhost:5000/scrap/grade'
 
-        const request = axios.get(SCRAP_URL, { headers: this.props.cookie })
-        .then((resp) => {
-            console.log(resp)
-        })
+    componentWillMount() {
+        this.props.getGrade()
+    }
+
+    renderItems() { 
+        return this.props.grade.map(item => (
+            <tr>
+                <td className="nome">{item[1]}</td>
+                <td className="faltas">{item[4]}</td>
+                <td className="nota01">{item[5]}</td>
+                <td className="nota02">{item[6]}</td>
+                <td className="notae">{item[7]}</td>
+                <td className="media">{item[8]}</td>
+                <td className="frequencia">{item[9]}</td>
+            </tr>
+        ))
     }
 
     render() {
@@ -42,15 +52,7 @@ class Grade extends Component {
                                 </tr>
                             </thead>
                             <tbody className="list">
-                                <tr>
-                                    <td className="nome">Análise de Circuitos</td>
-                                    <td className="faltas">12</td>
-                                    <td className="nota01"></td>
-                                    <td className="nota02"></td>
-                                    <td className="notae"></td>
-                                    <td className="media">0</td>
-                                    <td className="frequencia">82</td>
-                                </tr>
+                                {this.renderItems()}
                             </tbody>
                         </table>
                     </div>
@@ -60,5 +62,6 @@ class Grade extends Component {
     }
 }
 
-const mapStateToProps = state => ({ cookie: state.auth.cookie })
-export default connect(mapStateToProps)(Grade)
+const mapStateToProps = state => ({ cookie: state.auth.cookie, grade: state.grade.grade })
+const mapDispatchToProps = dispatch => bindActionCreators({ getGrade }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(Grade)
