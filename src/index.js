@@ -22,6 +22,7 @@ import GradeReducer from './components/grade/gradeReducer'
 import Auth from './views/auth'
 import Home from './views/home'
 import Documents from './components/documents'
+import Grade from './components/grade/grade'
 
 import Navbar from './components/navbar'
 
@@ -48,7 +49,9 @@ ReactDOM.render(
                     position="top-right"
                     transitionIn="fadeIn"
                     transitionOut="fadeOut"/>
-                <Route exact path='/' component={Home} />
+                <Route exact path='/' component={Auth} />
+                <Route path='/home'component={Home} />
+                <Route path='/grade' component={Grade} />
                 <Route path='/documents' component={Documents} />
             </div>
         </ConnectedRouter>

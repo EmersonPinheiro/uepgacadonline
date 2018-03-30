@@ -2,7 +2,6 @@ import axios from 'axios'
 import queryString from 'query-string'
 
 import { toastr } from 'react-redux-toastr'
-import { push } from 'react-router-redux'
 
 const AUTH_URL = 'http://localhost:5000/scrap/auth'
 

@@ -43,9 +43,11 @@ server.post('/scrap/auth', (req, res) => {
     })
 })
 
-server.get('/scrap/grade', (req, res) => {
+server.post('/scrap/grade', (req, res) => {
+    data = { 'cookie': req.body.cookie }  
+
     axios.get(SCRAP_URLS['grade'], {
-        headers: { 'cookie': 'JSESSIONID=858DE057AB0CDAB9BB0D0AA1C440754E'}
+        headers: data
     })
     .then((scrap_resp) => {
         const $ = cheerio.load(scrap_resp.data)

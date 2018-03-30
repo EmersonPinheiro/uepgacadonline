@@ -1,12 +1,13 @@
 import axios from 'axios'
+import queryString from 'query-string'
+
 import { toastr } from 'react-redux-toastr'
-import { initialize } from 'redux-form'
 
-const SCRAP_URL = 'http://localhost:5000/scrap/grade'
+const GRADE_URL = 'http://localhost:5000/scrap/grade'
 
-export const getGrade = () => {
+export const getGrade = (cookie) => {
     return dispatch => {
-        axios.get(SCRAP_URL)
+        axios.post(GRADE_URL, queryString.stringify({ cookie }))
         .then(resp => {
             dispatch({ type: 'GRADE_FETCHED', payload: resp.data })
         })

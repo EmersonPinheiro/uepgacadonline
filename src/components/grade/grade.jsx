@@ -10,7 +10,7 @@ import { getGrade } from './gradeActions'
 class Grade extends Component {
 
     componentWillMount() {
-        this.props.getGrade()
+        this.props.getGrade(this.props.cookie)
     }
 
     renderItems() { 
