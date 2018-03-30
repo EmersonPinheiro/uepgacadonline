@@ -1,4 +1,5 @@
 const axios = require('axios')
+const cheerio = require('cheerio')
 const queryString = require('query-string')
 
 const express = require('express')
@@ -7,7 +8,8 @@ const cors = require('cors')
 
 SCRAP_URLS = {
     'session': 'https://sistemas.uepg.br/academicoonline/login/index',
-    'auth': 'https://sistemas.uepg.br/academicoonline/login/authenticate'
+    'auth': 'https://sistemas.uepg.br/academicoonline/login/authenticate',
+    'home': 'https://sistemas.uepg.br/academicoonline'
 }
 
 const server = express()
@@ -23,9 +25,20 @@ server.post('/scrap/auth', (req, res) => {
         .then((scrap_res) => {
             let headers = { 'cookie': `${scrap_res.headers['set-cookie'][0].split(';')[0]}` }
 
-            axios.post(SCRAP_URLS['auth'], queryString.stringify(data), {
-                headers: headers
-            }).then(() => { res.send(headers) })
+            axios.post(SCRAP_URLS['auth'], queryString.stringify(data), { headers }).then(() => { 
+                axios.get(SCRAP_URLS['home'], { headers })
+                .then((resp) => {
+                    const $ = cheerio.load(resp.data)
+                    const name = $('#logadoHeader p').text()
+
+                    if(name != ' ') {
+                        res.send({name, cookie: headers.cookie})
+                    } else {
+                        res.status(500);
+                        res.send({'error': 'login or password wrong'})
+                    }
+                })
+            })
         })
 })
 

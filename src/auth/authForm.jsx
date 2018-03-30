@@ -43,12 +43,13 @@ class AuthForm extends Component {
                         </form>
                     </div>
                 </main>
+                <span>Name: {this.props.name}</span>
                 <span>Session: {this.props.cookie}</span>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({ cookie: state.auth.session.cookie, login: state.auth.login, password: state.auth.password })
+const mapStateToProps = state => ({ name: state.auth.name, cookie: state.auth.cookie, login: state.auth.login, password: state.auth.password })
 const mapDispatchToProps = dispatch => bindActionCreators({ auth, changeLogin, changePassword }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(AuthForm)
