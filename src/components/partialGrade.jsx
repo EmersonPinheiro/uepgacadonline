@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 export default class PartialGrade extends Component {
 
+    componentWillMount() {
+        
+    }
+
     render() {
         return (
             <div className="mdl-card__actions mdl-card--border">

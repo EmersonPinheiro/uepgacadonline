@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reduxForm, Field, formValueSelector } from 'redux-form'
 
 import { getGrade } from './gradeActions'
 
-export default class Grade extends Component {
+class Grade extends Component {
+    componentWillMount() {
+        let SCRAP_URL = 'http://localhost:5000/scrap/grade'
+
+        const request = axios.get(SCRAP_URL, { headers: this.props.cookie })
+        .then((resp) => {
+            console.log(resp)
+        })
+    }
 
     render() {
         return (
@@ -49,3 +59,6 @@ export default class Grade extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({ cookie: state.auth.cookie })
+export default connect(mapStateToProps)(Grade)

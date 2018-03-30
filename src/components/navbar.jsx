@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class Navbar extends Component { 
-    
+class Navbar extends Component { 
     render() {
         return (
             <header className="mdl-layout__header">
@@ -12,9 +12,7 @@ export default class Navbar extends Component {
                 </div>
                 <div className="mdl-layout__header-row">
                     <span className="mdl-layout-title">
-                        <a href="acad.html">
-                            Acadêmico Online
-                        </a>
+                        Acadêmico Online
                     </span>
                     <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                                 mdl-textfield--floating-label mdl-textfield--align-right">
@@ -41,3 +39,6 @@ export default class Navbar extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({ name: state.auth.name })
+export default connect(mapStateToProps)(Navbar)

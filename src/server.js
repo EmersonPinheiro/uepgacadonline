@@ -9,7 +9,8 @@ const cors = require('cors')
 SCRAP_URLS = {
     'session': 'https://sistemas.uepg.br/academicoonline/login/index',
     'auth': 'https://sistemas.uepg.br/academicoonline/login/authenticate',
-    'home': 'https://sistemas.uepg.br/academicoonline'
+    'home': 'https://sistemas.uepg.br/academicoonline',
+    'grade': 'https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index'
 }
 
 const server = express()
@@ -43,8 +44,18 @@ server.post('/scrap/auth', (req, res) => {
 })
 
 server.get('/scrap/grade', (req, res) => {
-    axios.get(SCRAP_URLS['auth'])
-        .then((scrap_res) => { res.send(scrap_res) })
+    axios.get(SCRAP_URLS['grade'], {
+        headers: { 'cookie': 'JSESSIONID=A6736EBB430B5F3E97AB1D923E7DAB18'}
+    })
+    .then((scrap_resp) => {
+        const $ = cheerio.load(scrap_resp.data)
+        const table = $('table')
+
+        res.send(table) 
+    })
+    .catch((e) => {
+        console.log(e)
+    })
 })
 
 server.listen(5000)
