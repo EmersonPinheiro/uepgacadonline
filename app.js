@@ -1,10 +1,10 @@
-const uepgwrapper = require('./src/uepgwrapper')
-
 const electron = require('electron')
 const { app, BrowserWindow } = require('electron')
 
 const url_ = require('url');
 const path = require('path');
+
+const server = require('./src/server')
 
 app.on('ready', () => {
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
@@ -16,7 +16,10 @@ app.on('ready', () => {
 
     let mainWindow = new BrowserWindow({ 
         width: width * 0.7,
-        height: height * 0.7
+        height: height * 0.7,
+        webPreferences: {
+            webSecurity: false
+        }
      })
 
     mainWindow.loadURL(url)

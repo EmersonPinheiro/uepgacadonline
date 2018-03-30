@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
 
-import { login } from './loginActions'
+import { login } from './authActions'
 
-export default class LoginForm extends Component {
+class AuthForm extends Component {
     render() {
+        const session = this.props.session
+
         return (
             <div className="mdl-layout mdl-js-layout mdl-color--grey-100">
                 <main className="mdl-layout__content">
@@ -26,12 +27,17 @@ export default class LoginForm extends Component {
                                 </div>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
-                                <button type="button" onClick={this.getUser} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Entrar</button>
+                                <button type="button" onClick={this.props.login} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Entrar</button>
                             </div>
                         </form>
                     </div>
                 </main>
+                <span>Session: {session.cookie}</span>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({ session: state.auth.session })
+const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm)
