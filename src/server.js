@@ -23,29 +23,29 @@ server.post('/scrap/auth', (req, res) => {
     data = { 'login': req.body.login, 'password': req.body.password }
 
     axios.get(SCRAP_URLS['session'])
-        .then((scrap_res) => {
-            let headers = { 'cookie': `${scrap_res.headers['set-cookie'][0].split(';')[0]}` }
+    .then((scrap_res) => {
+        let headers = { 'cookie': `${scrap_res.headers['set-cookie'][0].split(';')[0]}` }
 
-            axios.post(SCRAP_URLS['auth'], queryString.stringify(data), { headers }).then(() => { 
-                axios.get(SCRAP_URLS['home'], { headers })
-                .then((resp) => {
-                    const $ = cheerio.load(resp.data)
-                    const name = $('#logadoHeader p').text()
+        axios.post(SCRAP_URLS['auth'], queryString.stringify(data), { headers }).then(() => { 
+            axios.get(SCRAP_URLS['home'], { headers })
+            .then((resp) => {
+                const $ = cheerio.load(resp.data)
+                const name = $('#logadoHeader p').text()
 
-                    if(name != ' ') {
-                        res.send({name, cookie: headers.cookie})
-                    } else {
-                        res.status(500);
-                        res.send({'error': 'login or password wrong'})
-                    }
-                })
+                if(name != ' ') {
+                    res.send({name, cookie: headers.cookie})
+                } else {
+                    res.status(500);
+                    res.send({'error': 'login or password wrong'})
+                }
             })
         })
+    })
 })
 
 server.get('/scrap/grade', (req, res) => {
     axios.get(SCRAP_URLS['grade'], {
-        headers: { 'cookie': 'JSESSIONID=E47AB0CB925BD30CB9CBB6F030012568'}
+        headers: { 'cookie': 'JSESSIONID=858DE057AB0CDAB9BB0D0AA1C440754E'}
     })
     .then((scrap_resp) => {
         const $ = cheerio.load(scrap_resp.data)
@@ -57,9 +57,6 @@ server.get('/scrap/grade', (req, res) => {
         });
 
         res.send(table) 
-    })
-    .catch((e) => {
-        console.log(e)
     })
 })
 

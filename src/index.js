@@ -16,12 +16,12 @@ import promise from 'redux-promise'
 import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 
-import AuthReducer from './auth/authReducer'
-import GradeReducer from './grade/gradeReducer'
+import AuthReducer from './components/auth/authReducer'
+import GradeReducer from './components/grade/gradeReducer'
 
-import Auth from './auth/auth'
+import Auth from './views/auth'
+import Home from './views/home'
 import Documents from './components/documents'
-import Grade from './grade/grade'
 
 import Navbar from './components/navbar'
 
@@ -48,9 +48,8 @@ ReactDOM.render(
                     position="top-right"
                     transitionIn="fadeIn"
                     transitionOut="fadeOut"/>
-                <Route exact path='/' component={Auth} />
+                <Route exact path='/' component={Home} />
                 <Route path='/documents' component={Documents} />
-                <Route path='/grade' component={Grade} />
             </div>
         </ConnectedRouter>
     </Provider>
