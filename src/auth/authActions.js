@@ -1,36 +1,24 @@
+import axios from 'axios'
 import queryString from 'query-string'
 
 import { toastr } from 'react-redux-toastr'
 
-const AUTH_URL = {
-    'session': 'https://sistemas.uepg.br/academicoonline/login/index',
-    'login': 'https://sistemas.uepg.br/academicoonline/login/authenticate'
+const AUTH_URL = 'http://localhost:5000/scrap/auth'
+
+export const auth = (login, password) => {
+    console.log(login, password)    
+    return dispatch => {
+        axios.post(AUTH_URL, queryString.stringify({ login, password }))
+        .then(resp => { dispatch({ type: 'USER_LOGON', payload: resp.data }) })
+    }
 }
 
-export function login() {
-    let data = { 'login': '14147326', 'password': '' }
+export const changeLogin = e => ({
+    type: 'LOGIN_CHANGED',
+    payload: e.target.value
+})
 
-    fetch(AUTH_URL['session'])
-    .then(resp => { 
-        console.log(resp)
-        //console.log(resp)
-        //let headers = { 'cookie': `${resp.headers['set-cookie'][0].split(';')[0]}` }
-        //console.log(headers)
-
-        /*
-        fetch(AUTH_URL['login']), {
-            method: 'post',
-            mode: 'no-cors',
-            headers: headers,
-            body: queryString.stringify(data)
-        }
-        */
-       return false
-    })
-
-    return { type: 'USER_LOGON', payload: { cookie: 'JSESSIONID=5C07BB1CE877C9DBC858B74EC9F15414' } }
-}
-
-export function logout() {
-    return { type: 'USER_LOGOUT', payload: false }
-}
+export const changePassword = e => ({
+    type: 'PASSWORD_CHANGED',
+    payload: e.target.value
+})

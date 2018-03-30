@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { login } from './authActions'
+import { auth, changeLogin, changePassword } from './authActions'
 
 class AuthForm extends Component {
     render() {
-        const session = this.props.session
 
         return (
             <div className="mdl-layout mdl-js-layout mdl-color--grey-100">
@@ -18,26 +17,38 @@ class AuthForm extends Component {
                         <form type="submit">
                             <div className="mdl-card__supporting-text">
                                 <div className="mdl-textfield mdl-js-textfield">
-                                    <input className="mdl-textfield__input" type="text" id="username" />
-                                    <label className="mdl-textfield__label" htmlFor="username">RA</label>
+                                    <input className="mdl-textfield__input" 
+                                           type="text" 
+                                           value={this.props.login}
+                                           onChange={this.props.changeLogin} />
+                                    <label className="mdl-textfield__label" 
+                                           htmlFor="username">RA</label>
                                 </div>
                                 <div className="mdl-textfield mdl-js-textfield">
-                                    <input className="mdl-textfield__input" type="password" id="userpass" />
-                                    <label className="mdl-textfield__label" htmlFor="userpass">Senha</label>
+                                    <input className="mdl-textfield__input" 
+                                           type="password" 
+                                           value={this.props.password}
+                                           onChange={this.props.changePassword} />
+                                    <label className="mdl-textfield__label" 
+                                           htmlFor="userpass">Senha</label>
                                 </div>
                             </div>
                             <div className="mdl-card__actions mdl-card--border">
-                                <button type="button" onClick={this.props.login} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Entrar</button>
+                                <button type="button" 
+                                        onClick={() => { this.props.auth(this.props.login, this.props.password) }} 
+                                        className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    Entrar
+                                </button>
                             </div>
                         </form>
                     </div>
                 </main>
-                <span>Session: {session.cookie}</span>
+                <span>Session: {this.props.cookie}</span>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({ session: state.auth.session })
-const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch)
+const mapStateToProps = state => ({ cookie: state.auth.session.cookie, login: state.auth.login, password: state.auth.password })
+const mapDispatchToProps = dispatch => bindActionCreators({ auth, changeLogin, changePassword }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(AuthForm)
