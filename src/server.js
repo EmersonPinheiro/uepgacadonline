@@ -45,11 +45,16 @@ server.post('/scrap/auth', (req, res) => {
 
 server.get('/scrap/grade', (req, res) => {
     axios.get(SCRAP_URLS['grade'], {
-        headers: { 'cookie': 'JSESSIONID=A6736EBB430B5F3E97AB1D923E7DAB18'}
+        headers: { 'cookie': 'JSESSIONID=E47AB0CB925BD30CB9CBB6F030012568'}
     })
     .then((scrap_resp) => {
         const $ = cheerio.load(scrap_resp.data)
-        const table = $('table')
+        
+        const table = $('table tr.even,.odd').get().map(function (r) {
+            return $(r).find('td').get().map(function (c) {
+                return $(c).text();
+            });
+        });
 
         res.send(table) 
     })
