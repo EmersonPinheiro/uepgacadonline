@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, logErrorToMyService } from 'react'
 import axios from 'axios'
 
 import { connect } from 'react-redux'
@@ -10,10 +10,17 @@ import { getGrade } from './gradeActions'
 class Grade extends Component {
 
     componentWillMount() {
-        this.props.getGrade(this.props.cookie)
+        const cookie = localStorage.getItem('cookie')
+        this.props.getGrade(cookie)
+    }
+
+    componentDidCatch(error, info) {
+        this.setState({ hasError: true });
+        logErrorToMyService(error, info);
     }
 
     renderItems() { 
+        console.log(this.props.grade)
         return this.props.grade.map(item => (
             <tr>
                 <td className="nome">{item[1]}</td>

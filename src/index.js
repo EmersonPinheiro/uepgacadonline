@@ -15,7 +15,7 @@ import createHistory from 'history/createBrowserHistory'
 
 import ReduxToastr from 'react-redux-toastr'
 
-import Auth from './views/auth'
+import AuthForm from './components/auth/authForm'
 import Home from './views/home'
 import Documents from './components/documents/documents'
 import Grade from './components/grade/grade'
@@ -35,10 +35,10 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
             <div>
-                
+                <Navbar></Navbar>
                 <Switch>
-                    <Route exact path='/' component={Auth} />
-                    <Route path='/home'component={Home} />
+                    <Route exact path='/' component={AuthForm} />
+                    <Route path='/grade'component={Grade} />
                 </Switch>
             </div>
         </Router>

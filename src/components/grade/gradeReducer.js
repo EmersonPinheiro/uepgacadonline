@@ -1,9 +1,9 @@
-const INITIAL_STATE = {document: []}
+const INITIAL_STATE = {grade: []}
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case 'DOCUMENT_FETCHED':
-            return { ...state, document: action.payload }
+            return { ...state, grade: action.payload }
         default:
             return state
     }

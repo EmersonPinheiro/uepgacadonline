@@ -11,8 +11,10 @@ export const auth = (login, password) => {
         axios.post(AUTH_URL, queryString.stringify({ login, password }))
         .then(resp => { 
             toastr.success('Sucesso', 'Login realizado com sucesso!.')
-            dispatch({ type: 'USER_LOGGED_IN', payload: resp.data })
-            //dispatch(push('/home'))
+            localStorage.setItem('cookie', resp.data.cookie)
+            console.log(localStorage.getItem('cookie'))
+            //dispatch({ type: 'USER_LOGGED_IN', payload: resp.data })
+            dispatch(push("/grade"))
          })
         .catch((e) => {
             console.log(e)

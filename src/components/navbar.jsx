@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux';
 
 class Navbar extends Component { 
     render() {
@@ -17,7 +18,7 @@ class Navbar extends Component {
                     <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                                 mdl-textfield--floating-label mdl-textfield--align-right">
                         <nav className="mdl-navigation">
-                            <a className="mdl-navigation__link" href="docs.html">Documentos</a>
+                            <a className="mdl-navigation__link" onClick={() => {push("/")}}>Documentos</a>
                             <a className="mdl-navigation__link" href="grade.html">Notas</a>
                         </nav>
                     </div>
