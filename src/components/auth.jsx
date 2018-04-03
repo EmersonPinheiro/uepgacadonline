@@ -3,7 +3,43 @@ import queryString from 'query-string'
 
 import React, { Component } from 'react'
 
-export default class Auth extends Component {
+import { ToastContainer, toast } from 'react-toastify'
+import { withStyles } from 'material-ui/styles'
+
+import Button from 'material-ui/Button'
+import Card, { CardHeader, CardMedia, CardContent, CardActions } from 'material-ui/Card'
+import Grid from 'material-ui/Grid';
+import TextField from 'material-ui/TextField'
+import Typography from 'material-ui/Typography'
+
+import AccountCircle from 'material-ui-icons/AccountCircle'
+import Key from 'material-ui-icons/VpnKey'
+
+const styles = theme => ({
+    card: {
+        maxWidth: 500,
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    control: {
+        padding: theme.spacing.unit * 2,
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+    },
+    media: {
+        height: 0,
+    },
+    root: {
+        flexGrow: 1,
+    }
+});
+
+class Auth extends Component {
     constructor() {
         super()
         this.state = {
@@ -23,52 +59,88 @@ export default class Auth extends Component {
 
         axios.post(AUTH_URL, queryString.stringify({ login, password }))
             .then(resp => {
-                //toastr.success('Sucesso', 'Login realizado com sucesso!.')
                 localStorage.setItem('cookie', resp.data.cookie)
                 this.props.history.push('/grade')
             })
             .catch((e) => {
-                //toastr.error('Erro', 'Usuário ou senha inválidos.')
-                console.log(e)
+                toast('Ocorreu um erro ao logar!', { 
+                    type: toast.TYPE.ERROR,
+                    hideProgressBar: true,
+                    autoClose: 5000 
+                })
             })   
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div className="mdl-card mdl-shadow--6dp">
-                <div className="mdl-card__title mdl-color--primary mdl-color-text--white">
-                    <h2 className="mdl-card__title-text">Acadêmico Online</h2>
-                </div>
-                <form type="submit">
-                    <div className="mdl-card__supporting-text">
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <input className="mdl-textfield__input"
-                                type="text"
-                                name="login"
-                                onChange={this.handleChange}
-                                value={this.state.login} />
-                            <label className="mdl-textfield__label"
-                                htmlFor="username">RA</label>
-                        </div>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <input className="mdl-textfield__input"
-                                type="password"
-                                name="password"
-                                onChange={this.handleChange}
-                                value={this.state.password} />
-                            <label className="mdl-textfield__label"
-                                htmlFor="userpass">Senha</label>
-                        </div>
-                    </div>
-                    <div className="mdl-card__actions mdl-card--border">
-                        <button type="button"
-                            onClick={() => {this.login()}}
-                            className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                            Entrar
-                        </button>
-                    </div>
-                </form>
+            <div>
+                <Grid container className={classes.root}>
+                    <Grid item xs={12}>
+                        <ToastContainer />
+                        <Grid container
+                            spacing={16}
+                            alignItems="center"
+                            justify="center">
+                            <Card className={classes.control}>                        
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://i.imgur.com/CyqhVcG.png" //temp
+                                    title="Uepg Logo"
+                                />
+                                <CardHeader
+                                    title="Acadêmico Online"
+                                    subheader="Universidade Estadual de Ponta Grossa"
+                                />
+                                <CardContent>
+                                    <form noValidate autoComplete="on">
+                                        <AccountCircle/>
+                                        <TextField
+                                            required
+                                            name="login"
+                                            label="Login"
+                                            className={classes.textField}
+                                            value={this.state.login}
+                                            onChange={this.handleChange}
+                                        />
+                                        <Key/>
+                                        <TextField
+                                            required
+                                            name="password"
+                                            label="Senha"
+                                            type="password"
+                                            autoComplete="current-password"
+                                            className={classes.textField}
+                                            value={this.state.password}
+                                            onChange={this.handleChange}
+                                        /> 
+                                    </form>
+                                </CardContent>
+                                <CardActions>
+                                    <Button className={classes.button}
+                                            variant="raised"
+                                            color="primary" 
+                                            size="large"
+                                            onClick={() => { this.login() }}>   
+                                        Entrar
+                                    </Button>
+                                </CardActions>
+                                <CardContent>
+                                    <Typography paragraph>
+                                        Versão não oficial.
+                                    </Typography>
+                                    <Typography paragraph>
+                                        Lorem ipsum dolor sit amet.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </div>
         )
     }
 }
+
+export default withStyles(styles)(Auth)

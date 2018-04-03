@@ -10,8 +10,7 @@ import Navbar from './components/navbar'
 export default props => (
     <Router>
         <div>
-            <Navbar />
-            <Route path="/auth" component={Auth} />
+            <Route path="/login" component={Auth} />
             <Route path="/grade" component={Grade} />
             <Route path="/docs" component={Docs} />
         </div>
