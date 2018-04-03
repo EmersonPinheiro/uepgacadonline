@@ -5,7 +5,13 @@ import { connect, Provider } from 'react-redux'
 
 import { Route, Switch } from 'react-router'
 import { Redirect } from 'react-router-dom'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter as Router, routerReducer, routerMiddleware } from 'react-router-redux'
+import { applyMiddleware, createStore, combineReducers } from 'redux'
+
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+import thunk from 'redux-thunk'
+import createHistory from 'history/createBrowserHistory'
 
 import ReduxToastr from 'react-redux-toastr'
 
@@ -17,26 +23,25 @@ import Grade from './components/grade/grade'
 import Navbar from './components/navbar'
 
 import registerServiceWorker from './registerServiceWorker'
+import reducers from './reducers'
 
-import { store, history } from './store'
+const history = createHistory()
+const middleware = routerMiddleware(history)
+
+//const store = createStore(reducers, composeWithDevTools(applyMiddleware(middleware, thunk)))
+const store = applyMiddleware(thunk, middleware)(createStore)(reducers)
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <Router history={history}>
             <div>
-                <ReduxToastr
-                    timeOut={2000}
-                    newestOnTop={false}
-                    preventDuplicates
-                    position="top-right"
-                    transitionIn="fadeIn"
-                    transitionOut="fadeOut" />
+                
                 <Switch>
                     <Route exact path='/' component={Auth} />
                     <Route path='/home'component={Home} />
                 </Switch>
             </div>
-        </ConnectedRouter>
+        </Router>
     </Provider>
     , document.getElementById('app')
 )

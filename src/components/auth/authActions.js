@@ -8,20 +8,17 @@ const AUTH_URL = 'http://localhost:5000/scrap/auth'
 
 export const auth = (login, password) => {
     return dispatch => {
-        /*
         axios.post(AUTH_URL, queryString.stringify({ login, password }))
         .then(resp => { 
-            //toastr.success('Sucesso', 'Login realizado com sucesso!.')
+            toastr.success('Sucesso', 'Login realizado com sucesso!.')
             dispatch({ type: 'USER_LOGGED_IN', payload: resp.data })
-            dispatch(push('/home'))
+            //dispatch(push('/home'))
          })
         .catch((e) => {
             console.log(e)
             toastr.error('Erro', 'Usuário ou senha inválidos.')
             dispatch({ type: 'USER_LOGIN_FAILED'})
         })   
-        */
-       dispatch(push('/home'))
     }
 }
 

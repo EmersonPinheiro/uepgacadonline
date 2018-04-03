@@ -6,6 +6,6 @@ import Grade from '../components/grade/grade'
 export default props => (
     <div>
         <Navbar />
-        <Grade />
+        
     </div>
 )

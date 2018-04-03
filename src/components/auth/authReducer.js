@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
-    name: null,
-    login: null,
-    password: null,
-    cookie: null
+    name: '',
+    login: '',
+    password: '',
+    cookie: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
