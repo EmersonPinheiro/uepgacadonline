@@ -13,9 +13,8 @@ export default class Grade extends Component {
     }
 
     componentDidMount() {
-        //let cookie = localStorage.getItem('cookie')
         const GRADE_URL = 'http://localhost:5000/scrap/grade'
-        const cookie = 'JSESSIONID='
+        const cookie = localStorage.getItem('cookie')
 
         axios.post(GRADE_URL, queryString.stringify({ cookie }))
             .then(resp => {
