@@ -34,23 +34,12 @@
     "cheerio": "^1.0.0-rc.2",
     "cheerio-tableparser": "^1.0.1",
     "cors": "^2.8.4",
-    "crawler": "^1.1.2",
     "express": "^4.16.3",
-    "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.40",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-redux-toastr": "^7.2.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.3.0-rc.2",
-    "react-router-redux": "next",
-    "react-scripts": "1.1.1",
-    "redux": "^3.7.2",
-    "redux-devtools": "^3.4.1",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-form": "^7.3.0",
-    "redux-multi": "^0.1.12",
-    "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "react-scripts": "1.1.1"
   }
 }

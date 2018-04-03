@@ -84,11 +84,11 @@ export default class Documents extends Component {
                         <div className="mdl-card__supporting-text">
                             Clique na imagem para visualizar o documento.
                     </div>
-                    <div className="mdl-card__actions mdl-card--border">
-                        <ul className="mdl-list">
-                            {this.renderItems()}
-                        </ul>
-                    </div>
+                        <div className="mdl-card__actions mdl-card--border">
+                            <ul className="mdl-list">
+                                {this.renderItems()}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </main>

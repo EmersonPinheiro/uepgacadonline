@@ -1,27 +1,30 @@
-import React, { Component, logErrorToMyService } from 'react'
 import axios from 'axios'
+import queryString from 'query-string'
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import React, { Component } from 'react'
 
-import { getGrade } from './gradeActions'
+export default class Grade extends Component {
 
-class Grade extends Component {
-
-    componentWillMount() {
-        const cookie = localStorage.getItem('cookie')
-        this.props.getGrade(cookie)
+    constructor() {
+        super()
+        this.state = { 
+            grade: [] 
+        }
     }
 
-    componentDidCatch(error, info) {
-        this.setState({ hasError: true });
-        logErrorToMyService(error, info);
+    componentDidMount() {
+        //let cookie = localStorage.getItem('cookie')
+        const GRADE_URL = 'http://localhost:5000/scrap/grade'
+        const cookie = 'JSESSIONID='
+
+        axios.post(GRADE_URL, queryString.stringify({ cookie }))
+            .then(resp => {
+                this.setState({ grade: resp.data })
+            })
     }
 
-    renderItems() { 
-        console.log(this.props.grade)
-        return this.props.grade.map(item => (
+    renderItems() {
+        return this.state.grade.map(item => (
             <tr>
                 <td className="nome">{item[1]}</td>
                 <td className="faltas">{item[4]}</td>
@@ -68,7 +71,3 @@ class Grade extends Component {
         )
     }
 }
-
-const mapStateToProps = state => ({ cookie: state.auth.cookie, grade: state.grade.grade })
-const mapDispatchToProps = dispatch => bindActionCreators({ getGrade }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Grade)

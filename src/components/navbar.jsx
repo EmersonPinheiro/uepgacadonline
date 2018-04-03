@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { push } from 'react-router-redux';
+import { Link } from "react-router-dom";
 
-class Navbar extends Component { 
+export default class Navbar extends Component { 
     render() {
         return (
             <header className="mdl-layout__header">
@@ -18,8 +17,8 @@ class Navbar extends Component {
                     <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                                 mdl-textfield--floating-label mdl-textfield--align-right">
                         <nav className="mdl-navigation">
-                            <a className="mdl-navigation__link" onClick={() => {push("/")}}>Documentos</a>
-                            <a className="mdl-navigation__link" href="grade.html">Notas</a>
+                            <Link to="/docs">Documentos</Link>
+                            <Link to="/grade">Notas</Link>
                         </nav>
                     </div>
                     <div className="mdl-layout-spacer"></div>
@@ -28,9 +27,9 @@ class Navbar extends Component {
                             <i className="material-icons">more_vert</i>
                         </button>
                         <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" htmlFor="user-dropdown">
-                            <a href="login.html">
+                            <a href="/">
                                 <li className="mdl-menu__item">
-                                    Sair
+                                    <Link to="/auth">Sair</Link>
                                 </li>
                             </a>
                         </ul>
@@ -40,6 +39,3 @@ class Navbar extends Component {
         )
     }
 }
-
-const mapStateToProps = state => ({ name: state.auth.name })
-export default connect(mapStateToProps)(Navbar)
