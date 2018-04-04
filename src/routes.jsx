@@ -13,6 +13,7 @@ export default props => (
             <Route path="/login" component={Auth} />
             <Route path="/grade" component={Grade} />
             <Route path="/docs" component={Docs} />
+            <Route path="/sidebar" component={Sidebar} />
         </div>
     </Router>
 )
