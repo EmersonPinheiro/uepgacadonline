@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 const url_ = require('url');
 const path = require('path');
@@ -17,14 +17,31 @@ app.on('ready', () => {
     });
 
     let mainWindow = new BrowserWindow({ 
-        width: width * 0.7,
+        width: width * 0.8,
         height: height * 0.7,
         webPreferences: {
             webSecurity: false
         }
-     })
+    })
 
     mainWindow.loadURL(url)
+})
+
+let about = null
+ipcMain.on('open-about', () => {
+    if(about == null) {
+        about = new BrowserWindow({
+            width: 300,
+            height: 250,
+            alwaysOnTop: true
+        })
+    }
+
+    about.on('close-about', () => {
+        about = null
+    })
+
+    sobreWindow.loadURL('https://uepg.br');
 })
 
 app.on('window-all-closed', () => {

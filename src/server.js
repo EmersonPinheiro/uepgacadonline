@@ -11,7 +11,8 @@ SCRAP_URLS = {
     'auth': 'https://sistemas.uepg.br/academicoonline/login/authenticate',
     'home': 'https://sistemas.uepg.br/academicoonline',
     'grade': 'https://sistemas.uepg.br/academicoonline/avaliacaoDesempenho/index',
-    'document': 'https://sistemas.uepg.br/academicoonline/documentos/generate?reportName='
+    'document': 'https://sistemas.uepg.br/academicoonline/documentos/generate?reportName=',
+    'perfil': 'https://sistemas.uepg.br/academicoonline/academico_pessoa/edit_validado'
 }
 
 const server = express()
@@ -72,6 +73,21 @@ server.post('/scrap/document', (req, res) => {
     })
     .then((scrap_resp) => {
         res.send(scrap_resp.data)
+    })
+})
+
+server.post('/scrap/perfil', (req, res) => {
+    let data = { 'cookie': req.body.cookie }
+
+    axios.get(SCRAP_URLS['perfil'], {
+        headers: data
+    })
+    .then((scrap_resp) => {
+        const $ = cheerio.load(scrap_resp.data)
+
+        table = $('td')
+
+        res.send(table) 
     })
 })
 
