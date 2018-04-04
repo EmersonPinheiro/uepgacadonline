@@ -9,6 +9,7 @@ import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import Card, { CardHeader, CardMedia, CardContent, CardActions } from 'material-ui/Card'
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 
@@ -35,8 +36,11 @@ const styles = theme => ({
         height: 0,
     },
     root: {
-        flexGrow: 1,
-    }
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        paddingBottom: theme.spacing.unit * 3,
+        overflowX: 'auto',
+    },
 });
 
 class Auth extends Component {
@@ -76,68 +80,70 @@ class Auth extends Component {
 
         return (
             <div>
-                <Grid container className={classes.root}>
-                    <Grid item xs={12}>
-                        <ToastContainer />
-                        <Grid container
-                            spacing={16}
-                            alignItems="center"
-                            justify="center">
-                            <Card className={classes.control}>                        
-                                <CardMedia
-                                    className={classes.media}
-                                    image="https://i.imgur.com/CyqhVcG.png" //temp
-                                    title="Uepg Logo"
-                                />
-                                <CardHeader
-                                    title="Acadêmico Online"
-                                    subheader="Universidade Estadual de Ponta Grossa"
-                                />
-                                <CardContent>
-                                    <form noValidate autoComplete="on">
-                                        <AccountCircle/>
-                                        <TextField
-                                            required
-                                            name="login"
-                                            label="Login"
-                                            className={classes.textField}
-                                            value={this.state.login}
-                                            onChange={this.handleChange}
-                                        />
-                                        <Key/>
-                                        <TextField
-                                            required
-                                            name="password"
-                                            label="Senha"
-                                            type="password"
-                                            autoComplete="current-password"
-                                            className={classes.textField}
-                                            value={this.state.password}
-                                            onChange={this.handleChange}
-                                        /> 
-                                    </form>
-                                </CardContent>
-                                <CardActions>
-                                    <Button className={classes.button}
-                                            variant="raised"
-                                            color="primary" 
-                                            size="large"
-                                            onClick={() => { this.login() }}>   
-                                        Entrar
-                                    </Button>
-                                </CardActions>
-                                <CardContent>
-                                    <Typography paragraph>
-                                        Versão não oficial.
-                                    </Typography>
-                                    <Typography paragraph>
-                                        Lorem ipsum dolor sit amet.
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                <Paper className={classes.root}>
+                    <Grid container className={classes.root}>
+                        <Grid item xs={12}>
+                            <ToastContainer />
+                            <Grid container
+                                spacing={16}
+                                alignItems="center"
+                                justify="center">
+                                <Card className={classes.control}>                        
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="https://i.imgur.com/CyqhVcG.png" //temp
+                                        title="Uepg Logo"
+                                    />
+                                    <CardHeader
+                                        title="Acadêmico Online"
+                                        subheader="Universidade Estadual de Ponta Grossa"
+                                    />
+                                    <CardContent>
+                                        <form noValidate autoComplete="on">
+                                            <AccountCircle/>
+                                            <TextField
+                                                required
+                                                name="login"
+                                                label="Login"
+                                                className={classes.textField}
+                                                value={this.state.login}
+                                                onChange={this.handleChange}
+                                            />
+                                            <Key/>
+                                            <TextField
+                                                required
+                                                name="password"
+                                                label="Senha"
+                                                type="password"
+                                                autoComplete="current-password"
+                                                className={classes.textField}
+                                                value={this.state.password}
+                                                onChange={this.handleChange}
+                                            /> 
+                                        </form>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button className={classes.button}
+                                                variant="raised"
+                                                color="primary" 
+                                                size="large"
+                                                onClick={() => { this.login() }}>   
+                                            Entrar
+                                        </Button>
+                                    </CardActions>
+                                    <CardContent>
+                                        <Typography paragraph>
+                                            Versão não oficial.
+                                        </Typography>
+                                        <Typography paragraph>
+                                            Lorem ipsum dolor sit amet.
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
+                </Paper>
             </div>
         )
     }

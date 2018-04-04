@@ -5,7 +5,7 @@ import Auth from './components/auth'
 import Grade from './components/grade'
 import Docs from './components/documents'
 
-import Navbar from './components/navbar'
+import Sidebar from './components/sidebar'
 
 export default props => (
     <Router>
