@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from "react-router-dom"
 
-import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';  
 
 import AccountCircle from 'material-ui-icons/AccountCircle'
@@ -24,14 +23,6 @@ const routes = [
     }
 ]
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-});
-
 class Sidebar extends Component {
 
     renderLinks() {
@@ -52,14 +43,12 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div className={this.props.classes.root}>
-                <List component="nav">
-                    {this.renderLinks()}
-                </List>
-            </div>   
+            <List component="nav">
+                {this.renderLinks()}
+            </List>
         )
     }
 }
 
-export default withStyles(styles)(Sidebar)
+export default Sidebar
 

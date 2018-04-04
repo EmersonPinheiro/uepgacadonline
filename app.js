@@ -41,7 +41,7 @@ ipcMain.on('open-about', () => {
         about = null
     })
 
-    sobreWindow.loadURL('https://uepg.br');
+    sobreWindow.loadURL('');
 })
 
 app.on('window-all-closed', () => {
